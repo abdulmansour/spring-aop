@@ -1,0 +1,29 @@
+@Before:
+
+@Before advice type is use to run specific code before a call is made to an object's function.
+This specific code can be security, logs, transactions ran prior to function execution.
+@AfterRunning has the same capabilities, but is ran after the termination of the function.
+
+Pointcut: An expression for where the advice should be applied. Essentially specifying at which point the listener should be triggered to execute advice code
+
+Expression patterns:
+-Modifiers (public/private) - OPTIONAL
+-Return Type (data type: int, void, String, List<Customer>, ...)
+-Declaring Type (class name full declaring: com.abdulmansour.dao.AccountDAO , ...) - OPTIONAL
+-Method Name with params (exact method name with params: addAccount(), ...)
+-Throws (match on given exception) - OPTIONAL
+
+Pattern wildcards:
+using '*' will apply matches on everything for the given pattern (ex: execute advice before all exception thrown)
+
+ex: @Before("execution(public void add*())") ---------------> This will apply to any function that begins with 'add'
+
+ex: @Before("execution(* processCreditCard*())" ----------> This will process any return type and any function that begins with 'processCreditCard' for all varieties of credit cards
+
+For parameters:
+
+wildcard: (..)
+
+For any method in a given package:
+
+@Before("execution(* com.abdulmansour.dao.*.*.(..))"")
